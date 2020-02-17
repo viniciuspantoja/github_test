@@ -1,12 +1,9 @@
 language: python
 python:
-  - 3.7
+  - "3.7"
 
-jobs:
-  include:
-    install:
-      - pipenv install --dev --ignore-pipfile --deploy
+install:
+  - pipenv install --dev --ignore-pipfile --deploy
 
-    script:
-
-      - python app.py
+script:
+  - python app.py
