@@ -1,4 +1,12 @@
 language: python
+python:
+
+  - "3.7"
+
+script:
+
+  - app.py
+
 jobs:
   include:
     install:
