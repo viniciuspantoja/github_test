@@ -5,7 +5,7 @@ python:
 
 script:
 
-  - app.py
+  - python app.py
 
 jobs:
   include:
