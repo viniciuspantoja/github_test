@@ -1,32 +1,26 @@
 language: python
 python:
-  - "3.7"
-
-
+- '3.7'
 stages:
-  - test
-  - name: answers
-    if: branch = master
-
-
-env:
-  global:
-    secure: "syccHl4Cj4uH4Suvyaozg+qflC23yy2twSH62NaNhqIDRjPoPiI9oauvuazoJS42DDxd07Z6gzz1GZ+Wi1u1K+DZCwjpqLlMj9R7mQZN2HyKY2eebayJowAaeE1cS7I+UBUaRQa1f/JddHZ/A8jP9tO4rraem1r7mobbRpZj8PayRqgSoNCUL7jEf00TOPIvO6mrWLSURov/suzZhscYVJyzdOS+RjkGKs+7wV1PUoY1GtbcvsMod/8wTGYpcIqkt6PgelIyJXrJHOlyg1ywjNdoP1F78MjTa7AKIpS3B+9lb6zvV+wk1mv0dTcYaYANjitbzdBjsSuIFv2IjTABChIYiyuy+t4qrIqQVA43pBoKeiwbJWs0cfMs/eUF7kil/VKyMfdsiPvN707tPLtoBVWjYdqYFCe1MGdb6f1jCKMIfbpo9Lm1FnWRMST/+GVkWu9cxZk8QwysUSrsZidfQsj9YeF0HLdNeVxYSYBBNVHxVFg/PzE7d10+zXehg/vf2J0OG5ux8Y2ta/NJzu4bpky7x4AftCamE9MfUEPqOCzL3zkiV+EDxcGV14w04QxXHnP0K/eeUZfrg+xbTbEh6CTcyKVu/xihveKYPffjxefUWz5hDM3pGfgr57o/EJ94zcR4FWJiK6+FuyHD2Ht8/d3nqCyyWNh5A81xwTyR8xI="
-
-
+- test
+- name: answers
+  if: branch = master
 jobs:
   include:
-    - stage: test
-      install:
-        - pipenv install --dev --ignore-pipfile --deploy
-      before_script: # code coverage tool
-         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-         - chmod +x ./cc-test-reporter
-         - ./cc-test-reporter before-build
-      script: pytest --cov-report xml --cov-report term
-      after_script:
-        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
-    - stage: answers
-      script:
-        - python app.py
+  - stage: test
+    install:
+    - pipenv install --dev --ignore-pipfile --deploy
+    before_script:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+      > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - "./cc-test-reporter before-build"
+    script: pytest --cov-report xml --cov-report term
+    after_script:
+    - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+  - stage: answers
+    script:
+    - python app.py
+env:
+  global:
+    secure: LJJcK3/SCNsIACQIBiTK5c5Iqo4c0QYdR1YCqBH8rqre+Q4IRJc1NOaREd77nGcl3jSyFGcmCkb8sR7S6anoQndHQxbJsELbM+46tmb6iaVKjxG7cbc74Q/gUrF4wHcOCBhIYePsOs/hNcK9qVUm9LlBfFsgt622uCLwV+anXV27BSmYyr12CZVjGcHSdZpHl9l0Bmyp/ht7bKIQTN2Qgsia2pMEXw3GZp/NDXdCK9IRmMxv/tSntdSeqt13xDYRoctCKZY8YnF3/W9zkvEzVFfJB8+CY9ZzCnO5znR1AU9Vrw749PWbCF8Lo+1t//an2VTfLTCXObHxGuNvbQeKU3QRY+30xXkb4BW3M5M7/Nvh48iMuS5qU47J0HsHbfH66WWxBl520t2aXRciNBx7kA97mRNYVZkoji6541q8YGMIl+QdqydaU/erpwz0/yXSQXXUSJAKIfOfQ5/fNqMSjK6wpcjWMLZC8jxnz2vc69WSbVtuwgvujtsKlaliun9p1aSfRIFgcuwgEmJOxMRRmeXQ3nrvP7bbDVpO00bp7KbSbSurXAUn4CNfT4F80qxCl9KiMnUWV9O6rex5LrSzZOxkbe3nEQ02SNesGGmBUW3N7ZefupBJOIAFQ5ND05F5nmdz5GDijy1BegCb7loYiwlJhL9g3YdJNpk7GL1Sz4U=
