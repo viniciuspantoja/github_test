@@ -1,3 +1,8 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=ad92cabd1c478199c3f1983671ec2a938877baabd39e35843ecda54485858b95
+
+
 language: python
 dist: xenial
 python:
@@ -6,12 +11,8 @@ python:
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
-
-script: python app.py
+  - ./cc-test-reporter before-build
+script:
+  - python app.py
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
-env:
-  global:
-    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
-    - CC_TEST_REPORTER_ID=ad92cabd1c478199c3f1983671ec2a938877baabd39e35843ecda54485858b95
