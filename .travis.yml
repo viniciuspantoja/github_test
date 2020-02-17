@@ -2,6 +2,9 @@ language: python
 python:
   - "3.7"
 
+secure: "syccHl4Cj4uH4Suvyaozg+qflC23yy2twSH62NaNhqIDRjPoPiI9oauvuazoJS42DDxd07Z6gzz1GZ+Wi1u1K+DZCwjpqLlMj9R7mQZN2HyKY2eebayJowAaeE1cS7I+UBUaRQa1f/JddHZ/A8jP9tO4rraem1r7mobbRpZj8PayRqgSoNCUL7jEf00TOPIvO6mrWLSURov/suzZhscYVJyzdOS+RjkGKs+7wV1PUoY1GtbcvsMod/8wTGYpcIqkt6PgelIyJXrJHOlyg1ywjNdoP1F78MjTa7AKIpS3B+9lb6zvV+wk1mv0dTcYaYANjitbzdBjsSuIFv2IjTABChIYiyuy+t4qrIqQVA43pBoKeiwbJWs0cfMs/eUF7kil/VKyMfdsiPvN707tPLtoBVWjYdqYFCe1MGdb6f1jCKMIfbpo9Lm1FnWRMST/+GVkWu9cxZk8QwysUSrsZidfQsj9YeF0HLdNeVxYSYBBNVHxVFg/PzE7d10+zXehg/vf2J0OG5ux8Y2ta/NJzu4bpky7x4AftCamE9MfUEPqOCzL3zkiV+EDxcGV14w04QxXHnP0K/eeUZfrg+xbTbEh6CTcyKVu/xihveKYPffjxefUWz5hDM3pGfgr57o/EJ94zcR4FWJiK6+FuyHD2Ht8/d3nqCyyWNh5A81xwTyR8xI="
+
+ 
 install:
   - pipenv install --dev --ignore-pipfile --deploy
 
