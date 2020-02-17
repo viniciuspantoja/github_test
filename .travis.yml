@@ -9,6 +9,8 @@ addons:
 
 stages:
   - test
+  - name: answers
+    if: branch = master
 
 
 jobs:
@@ -24,5 +26,6 @@ jobs:
       after_script:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
+    - stage: answers
       script:
         - python app.py
