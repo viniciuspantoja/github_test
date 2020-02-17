@@ -1,2 +1,5 @@
 language: python
-
+jobs:
+  include:
+    install:
+      - pipenv install --dev --ignore-pipfile --deploy
