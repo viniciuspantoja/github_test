@@ -9,8 +9,7 @@ addons:
 
 stages:
   - test
-  - name: answers
-    if: branch = master
+
 
 jobs:
   include:
@@ -25,4 +24,3 @@ jobs:
         - python app.py
       after_script:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-    - stage: answers
