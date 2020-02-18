@@ -24,7 +24,7 @@ jobs:
          - ./cc-test-reporter before-build
       script: pytest --cov-report xml:coverage.xml --cov=test_app --cov-report term
       after_script:
-        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+        - ./cc-test-reporter after-build --debug --exit-code $TRAVIS_TEST_RESULT
     - stage: answers
       script:
         - python app.py
