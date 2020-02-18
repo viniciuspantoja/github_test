@@ -16,6 +16,14 @@ def circles(r):
         return pi * (r **2)
 
 
+def squares(r):
+
+    if r <= 0:
+        raise ValueError('The size of a square should be positive')
+
+    else:
+        return r**2
+
 if __name__ == "__main__":
     parser = ArgumentParser(
         description=__doc__, formatter_class=RawDescriptionHelpFormatter

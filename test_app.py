@@ -1,7 +1,7 @@
 from math import pi
 from unittest import TestCase, main
 
-from app import circles
+from app import circles, squares
 
 
 class PyramidTests(TestCase):
@@ -15,6 +15,14 @@ class PyramidTests(TestCase):
     def test_values(self):
         # Let's raise the error values where
         self.assertRaises(ValueError, circles, -2)
+        self.assertRaises(ValueError, squares, 0)
+
+
+    def test_squares(self):
+        self.assertEqual(squares(1),1)
+        self.assertEqual(squares(2),4)
+
+
 
 if __name__ == "__main__":
     main()
