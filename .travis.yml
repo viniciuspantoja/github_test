@@ -2,50 +2,24 @@ env:
   global:
     - CC_TEST_REPORTER_ID=58d3f6495835a1c19f264e739e7034c7da3f2154f730164ae990327cc762c064
 
-language: python
-dist: xenial
-python:
-  - "3.7"
+stages:
+  - test
+  - name: answers
+    if: branch = master
 
-install:
-  - pipenv install --dev --ignore-pipfile --deploy
-
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-
-script:
-  - pytest --cov-report xml:coverage.xml --cov=test_pset
-
-after_script:
-  - ./cc-test-reporter after-build --debug --exit-code $TRAVIS_TEST_RESULT
-
-script:
-  - python app.py
-
-
-# stages:
-#   - test
-#   - name: answers
-#     if: branch = master
-#
-# jobs:
-#   include:
-#     - stage: test
-#       install:
-#         - pipenv install --dev --ignore-pipfile --deploy
-#       before_script: # code coverage tool
-#          - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-#          - chmod +x ./cc-test-reporter
-#          - ./cc-test-reporter before-build
-#       script: pytest --cov-report xml --cov-report term
-#       after_script:
-#         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-#     - stage: answers
-#       script:
-#         - python app.py
-#
-# env:
-#   global:
-#     - CC_TEST_REPORTER_ID=ad92cabd1c478199c3f1983671ec2a938877baabd39e35843ecda54485858b95
+jobs:
+  include:
+    - stage: test
+      install:
+        - pipenv install --dev --deploy #--ignore-pipfile
+      before_script: # code coverage tool
+         - export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
+         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+         - chmod +x ./cc-test-reporter
+         - ./cc-test-reporter before-build
+      script: pytest --cov-report xml:coverage.xml --cov=test_app #--cov-report term
+      after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+    - stage: answers
+      script:
+        - python app.py
